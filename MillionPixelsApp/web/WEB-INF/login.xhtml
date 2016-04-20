@@ -6,18 +6,15 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <head>
-        
+        <title>Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <h:form>
-            <h3>
-                We've encountered a few errors while trying to register your account
-            </h3><hr/>
-            <h:outputText id="result" escape="false" value="#{signUpController.message}"/>
-            <h:commandButton id="back" value="Back" action="signup.xhtml"/>
+        <h:form id="login">
+            <h:inputText id="uname" value="{">
         </h:form>
     </body>
 </html>

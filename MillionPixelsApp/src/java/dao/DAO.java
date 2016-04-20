@@ -6,12 +6,13 @@
 package dao;
 
 
+import model.LoginBean;
 import model.SignUpBean;
 /**
  *
  * @author it3530216
  */
-public interface SignUpDAO {
+public interface DAO {
 
     /**
      *
@@ -19,4 +20,5 @@ public interface SignUpDAO {
      * @return
      */
     public int createProfile(SignUpBean aProfile);
+    public LoginBean login(String username, String password);
 }

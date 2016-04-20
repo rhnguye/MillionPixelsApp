@@ -5,8 +5,8 @@
  */
 package controller;
 
-import dao.SignUpDAO;
-import dao.SignUpDAOImpl;
+import dao.DAO;
+import dao.DAOImpl;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
@@ -87,9 +87,7 @@ public class SignUpController {
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject("Welcome");
-            message.setText(model.getFname() + " " + model.getLname() + "\n\nThank you for signing up with us! Below is your account information.\n\nFirst Name: " +  model.getFname()
-                + "\nLast Name: " + model.getLname() + "\nUsername: " + model.getUid() + "\nPassword: " + model.getPass() + "\nEmail: " + model.getEmail() + "\nSecurity Question: " + model.getSecques()
-                + "\nSecurity Answer: " + model.getSecanswer() + "\n\nWe Look forward to seeing more of you.\n\nRegards,\nSomeCompany");
+            message.setText("hey it worked");
             BodyPart bp=new MimeBodyPart();
             String htmlText="<img src=\"cid:image\">";
             bp.setContent(htmlText, "text/html");
@@ -110,23 +108,11 @@ public class SignUpController {
     public String createProfile(){
         boolean error=false;
         message="";
-        if(model.getFname().length()>25 || model.getFname().length()<2){
-            message+="First Name must have a length of between 2 and 25 characters.<br>";
-            error=true;
-        }
-        
-        if(model.getLname().length()>25 || model.getLname().length()<2){
-            message+="Last Name must have a length of between 2 and 25 characters.<br>";
-            error=true;
-        }
-        if(!model.getPass().equals(model.getConfirmpass())){//checks if passwords match
-            message+="Passwords don't match.<br>";
-            error=true;
-        }
-        SignUpDAO sud=new SignUpDAOImpl();
+        DAO sud=new DAOImpl();
         int rowcount=0;
         if(!error)
            rowcount=sud.createProfile(model);
+        model=new SignUpBean();
         if(rowcount==1){
             //this.sendMail();
             return "echo.xhtml";

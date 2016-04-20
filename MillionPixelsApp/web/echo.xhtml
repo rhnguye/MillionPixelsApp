@@ -19,9 +19,7 @@ and open the template in the editor.
             Username: <h:outputText id="uid" escape="false" value="#{signUpController.model.getUid()}"/><br/>
             Password: <h:outputText id="pass" escape="false" value="#{signUpController.model.getPass()}"/><br/>
             Email: <h:outputText id="email" escape="false" value="#{signUpController.model.getEmail()}"/><br/>
-            Security Question: <h:outputText id="sq" escape="false" value="#{signUpController.model.getSecques()}"/><br/>
-            Security Answer: <h:outputText id="sa" escape="false" value="#{signUpController.model.getSecanswer()}"/><br/>
         </h:form>
-        <h:form><h:commandButton id="back" value="Back to Homepage" action="index.xhtml"/></h:form>
+        <h:form><h:commandButton id="back" value="Back to Homepage" action="homepage.xhtml"/></h:form>
     </body>
 </html>
