@@ -152,6 +152,8 @@ public class UserController {
             setEmail(temp.getEmail());
             setFname(temp.getFname());
             setLname(temp.getLname());
+            setUid(lb.getUid());
+            setPassword(lb.getPassword());
             setLoggedin(true);
             return "homepage.xhtml?faces-redirect=true";
         }

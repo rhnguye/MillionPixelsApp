@@ -15,6 +15,19 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+		<div id="fb-root"></div>
+		<script>
+ 
+ 
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=your_app_id&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>    
+	<div class="fb-share-button" data-href="http://javafreakers.com" data-layout="button" data-desc="Hello world"></div>
         <h:form>
             <p:growl id="messages"/>
             <p:menubar>
@@ -23,7 +36,7 @@ and open the template in the editor.
                 <p:submenu label="#{userController.uid}"  style="float:right" rendered="#{userController.isLoggedin()}">
                         <p:menuitem value="Donate" />
                         <p:menuitem value="Edit Profile" />
-                        <p:menuitem value="Logout" actionListener="#{userController.logout()}" rendered="#{userController.isLoggedin()}"/>
+                        <p:menuitem value="Logout" action="#{userController.logout()}" rendered="#{userController.isLoggedin()}"/>
                     </p:submenu>
                 <f:facet name="options">
                     <p:commandButton value="Sign Up" onclick="PF('dlg').show();" rendered="#{!userController.isLoggedin()}"/>
