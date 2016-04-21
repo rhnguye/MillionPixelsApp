@@ -97,7 +97,7 @@ public class DAOImpl implements DAO {
             
             
                 queryString="select pixelsbought from project353.pixels where uid='"
-                        + username + "')";
+                        + username + "'";
                 Statement stmt = DBConn.createStatement();
                 rs = stmt.executeQuery(queryString);
                 int pixelsbought=0;

@@ -20,6 +20,6 @@ and open the template in the editor.
             Password: <h:outputText id="pass" escape="false" value="#{signUpController.model.getPass()}"/><br/>
             Email: <h:outputText id="email" escape="false" value="#{signUpController.model.getEmail()}"/><br/>
         </h:form>
-        <h:form><h:commandButton id="back" value="Back to Homepage" action="homepage.xhtml"/></h:form>
+        <h:form><h:commandButton id="back" value="Back to Homepage" action="homepage.xhtml?faces-redirect=true"/></h:form>
     </body>
 </html>

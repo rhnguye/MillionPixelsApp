@@ -29,6 +29,7 @@ public class UserController {
      */
     public UserController() {
         loggedin=false;
+        lb=new LoginBean();
     }
 
     /**
@@ -152,7 +153,19 @@ public class UserController {
             setFname(temp.getFname());
             setLname(temp.getLname());
             setLoggedin(true);
+            return "homepage.xhtml?faces-redirect=true";
         }
-        return "homepage.xhtml";
+        return "error.xhtml";
+    }
+    
+    public String logout(){
+        setUid("");
+        setPassword("");
+        setEmail("");
+        setFname("");
+        setLname("");
+        setLoggedin(false);
+        
+        return "homepage.xhtml?faces-redirect=true";
     }
 }

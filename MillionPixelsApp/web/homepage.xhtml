@@ -20,16 +20,21 @@ and open the template in the editor.
             <p:menubar>
                 <p:menuitem value="FMSC Website" url="https://www.fmsc.org/" />
                 <p:menuitem value="About Us" url="aboutus.xhtml" />
+                <p:submenu label="#{userController.uid}"  style="float:right" rendered="#{userController.isLoggedin()}">
+                        <p:menuitem value="Donate" />
+                        <p:menuitem value="Edit Profile" />
+                        <p:menuitem value="Logout" actionListener="#{userController.logout()}" rendered="#{userController.isLoggedin()}"/>
+                    </p:submenu>
                 <f:facet name="options">
-                    <p:commandButton value="Sign In" onclick="PF('dlg2').show();" rendered="#{!userController.isLoggedin()}"/>
                     <p:commandButton value="Sign Up" onclick="PF('dlg').show();" rendered="#{!userController.isLoggedin()}"/>
-                    <p:commandButton value="Logout" rendered="#{userController.isLoggedin()}"/>
+                    <p:commandButton value="Sign In" onclick="PF('dlg2').show();" rendered="#{!userController.isLoggedin()}"/>
+                    
+ 
                 </f:facet>
                 
                
             </p:menubar>
         </h:form>
-        
         <h:form>
             <p:dialog header="Sign Up" widgetVar="dlg" modal="true" resizable="false">
             <h:panelGrid columns="2" id="matchGrid" cellpadding="5">  
@@ -75,9 +80,11 @@ and open the template in the editor.
  
                 <p:commandButton id="sub2" update="signingrid" value="Sign In" action="#{userController.login()}"> </p:commandButton>
             </h:panelGrid>
+            <p:messages id="messages2" showDetail="true" autoUpdate="true" />
             </p:dialog>
             
         </h:form>
+      
         
         
     </body>
