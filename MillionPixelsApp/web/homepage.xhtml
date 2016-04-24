@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>FMSC Donation Site</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <link rel="stylesheet" type="text/css" href="./resources/css/style.css"></link>
+        <h:form>
+            <p:growl id="messages"/>
+            <p:menubar>
+                <p:menuitem value ="Home" url ="homepage.xhtml"/>
+                <p:menuitem value="FMSC Website" url="https://www.fmsc.org/" />
+                
+                <p:menuitem value="About Us" url="aboutus.xhtml" />
+                <p:menuitem value="Top Donations" url="topdonators.xhtml"/>
+                <p:submenu label="#{userController.uid}"  style="float:right" rendered="#{userController.isLoggedin()}">
+                        <p:menuitem value="Donate" />
+                        <p:menuitem value="Edit Profile" />
+                        <p:menuitem value="Logout" action="#{userController.logout()}" rendered="#{userController.isLoggedin()}"/>
+                    </p:submenu>
+                <p:menuitem value ="Donate" url="donate.xhtml"/>
+                <f:facet name="options">
+                    <p:commandButton value="Sign Up" onclick="PF('dlg').show();" rendered="#{!userController.isLoggedin()}"/>
+                    <p:commandButton value="Sign In" onclick="PF('dlg2').show();" rendered="#{!userController.isLoggedin()}"/>
+                    
+ 
+                </f:facet>
+                
+               
+            </p:menubar>
+        </h:form>
+        <h:form>
+            <p:dialog header="Sign Up" widgetVar="dlg" modal="true" resizable="false">
+            <h:panelGrid columns="2" id="matchGrid" cellpadding="5">  
+                <h:outputLabel for="uid" value="Username:" /> 
+                <p:inputText id="uid" required="true" value="#{signUpController.model.uid}">	
+                </p:inputText> 
+                
+                <h:outputLabel for="fname" value="First Name:" /> 
+                <p:inputText id="fname" required="true" value="#{signUpController.model.fname}">	
+                </p:inputText>
+            
+                <h:outputLabel for="lname" value="Last Name:" /> 
+                <p:inputText id="lname" required="true" value="#{signUpController.model.lname}">	
+                </p:inputText>
+                
+                <h:outputLabel for="email" value="Email:" /> 
+                <p:inputText id="email" required="true" value="#{signUpController.model.email}">
+                </p:inputText>
+                             
+                <h:outputLabel for="pwd1" value="Password:" />
+                <p:password id="pwd1" value="#{signUpController.model.pass}" match="pwd2" label="Password 1" required="true" />
+ 
+                <h:outputLabel for="pwd2" value="Confirm Password:" />
+                <p:password id="pwd2" value="#{signUpController.model.pass}" label="Password 2" required="true" />
+            
+                
+                <p:commandButton id="sub" update="matchGrid" value="Sign Up" action="#{signUpController.createProfile()}"> </p:commandButton>
+            </h:panelGrid>
+            <p:messages id="messages" showDetail="true" autoUpdate="true" />
+            </p:dialog>
+        
+        </h:form>
+            
+        <h:form>
+            <p:dialog header="Sign In" widgetVar="dlg2" modal="true" resizable="false">
+            <h:panelGrid columns="2" id="signingrid" cellpadding="5">  
+                <h:outputLabel for="signinuid" value="Username:" /> 
+                <p:inputText id="signinuid" value="#{userController.lb.uid}" required="true">	
+                </p:inputText> 
+                
+                <h:outputLabel for="signinpwd" value="Password:" />
+                <p:password id="signinpwd" value="#{userController.lb.password}" label="Password 3" required="true" />
+ 
+                <p:commandButton id="sub2" update="signingrid" value="Sign In" action="#{userController.login()}"> </p:commandButton>
+            </h:panelGrid>
+            <p:messages id="messages2" showDetail="true" autoUpdate="true" />
+            </p:dialog>
+            
+        </h:form>
+      
+        <!--<h:form>-->
+           <h:panelGrid columns="1" style="text-align:center">
+               <h:graphicImage value="./resources/images/pic1.jpg" />
+           </h:panelGrid>
+        <!--</h:form>-->
+        
+    </body>
+</html>

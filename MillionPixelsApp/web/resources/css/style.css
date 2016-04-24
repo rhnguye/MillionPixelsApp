@@ -1,0 +1,13 @@
+p {
+   font-weight:bold;
+   background-color: yellow;
+ }
+ body {
+    background-color: lightblue;
+}
+div {
+    background-color: lightblue;
+}
+centered{
+    margin: 0px;
+}
