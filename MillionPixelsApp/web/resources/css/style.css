@@ -11,3 +11,15 @@ div {
 centered{
     margin: 0px;
 }
+.twitter-share-button[style] { 
+vertical-align: text-bottom !important; 
+}
+.facebook-share-button[style] { 
+vertical-align: text-bottom !important; 
+}
+.g-plus[style]{
+vertical-align: text-bottom !important; 
+}
+.panelGridCenter {
+    margin: 0 auto;
+}

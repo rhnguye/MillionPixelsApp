@@ -11,6 +11,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import model.ChangeImage;
 import model.LoginBean;
 
 /**
@@ -169,5 +170,12 @@ public class UserController {
         setLoggedin(false);
         
         return "homepage.xhtml?faces-redirect=true";
+    }
+    
+    public String imageUpdate()
+    {
+        ChangeImage myimage = new ChangeImage();
+        myimage.updateImage(pixelsbought, "/resources/images/pic1.png", "/resources/images/pic2.png");
+        return "homepage.xhtml";
     }
 }

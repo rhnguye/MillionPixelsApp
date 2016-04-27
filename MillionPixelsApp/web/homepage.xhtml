@@ -72,7 +72,7 @@ and open the template in the editor.
             </p:dialog>
         
         </h:form>
-            
+        
         <h:form>
             <p:dialog header="Sign In" widgetVar="dlg2" modal="true" resizable="false">
             <h:panelGrid columns="2" id="signingrid" cellpadding="5">  
@@ -89,12 +89,51 @@ and open the template in the editor.
             </p:dialog>
             
         </h:form>
-      
+        <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:150px"/>
+        <br/>
         <!--<h:form>-->
-           <h:panelGrid columns="1" style="text-align:center">
-               <h:graphicImage value="./resources/images/pic1.jpg" />
+           <h:panelGrid columns="1" styleClass="panelGridCenter">
+               <h:graphicImage style="text-align:center" value="./resources/images/pic2.png"  />
            </h:panelGrid>
+            <h:form id="frm">
+                <h:outputText value="Number of pixels bought:"> </h:outputText> <h:inputText id="nameID" value="#{userController.pixelsbought}"></h:inputText>
+                <br/>
+                <h:commandButton id="submitID" value="Update Image" action="#{userController.imageUpdate()}"/>
+            </h:form>
         <!--</h:form>-->
-        
+                <div id="fb-root"></div>
+        <script type="text/javascript" style="panelGridCenter">
+            //Facebook script
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v2.0";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+            //Twitter button
+            (function () {
+                document.write('<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="I just donated to FMSC, check out their pixel application!" data-hashtags="OneMillionMeals" data-via="fmsc_org">Tweet</a>');
+                var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = 'http://platform.twitter.com/widgets.js';
+                s1.parentNode.insertBefore(s, s1);
+            })();
+        </script>
+        <!-- Google+ Script-->
+       <script async='async' src="https://apis.google.com/js/platform.js"></script>
+       <!-- Linked In button-->
+        <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+        <script type="IN/Share" data-url="https://www.linkedin.com/company/feed-my-starving-children"></script>
+        <!-- Facebook button-->
+        <div class="fb-share-button" data-href="https://www.facebook.com/feedmystarvingchildren" data-layout="button" data-mobile-iframe="true"></div>
+        <!-- Tumblr button-->
+        <a class="tumblr-share-button" data-color="blue" data-notes="none" href="https://embed.tumblr.com/share"></a>
+        <script>!function(d,s,id){var js,ajs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://secure.assets.tumblr.com/share-button.js";ajs.parentNode.insertBefore(js,ajs);}}(document, "script", "tumblr-js");</script>
+        <!-- Google+ button-->
+        <div class="g-plus" data-action="share" data-href="https://plus.google.com/+feedmystarvingchildren"></div>
     </body>
 </html>

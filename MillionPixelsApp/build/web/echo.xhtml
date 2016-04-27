@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <link rel="stylesheet" type="text/css" href="./resources/css/style.css"></link>
+        <h:form>
+            Hello <h:outputText id="fname" escape="false" value="#{signUpController.model.getFname()} "/> <h:outputText id="lname" escape="false" value="#{signUpController.model.getLname()}"/>
+            <br/><br/>
+            <h:outputText id="msg" escape="false" value="Your account has been successfully registered on our website. Check for your account details below"/><br/><hr/>
+            Username: <h:outputText id="uid" escape="false" value="#{signUpController.model.getUid()}"/><br/>
+            Password: <h:outputText id="pass" escape="false" value="#{signUpController.model.getPass()}"/><br/>
+            Email: <h:outputText id="email" escape="false" value="#{signUpController.model.getEmail()}"/><br/>
+        </h:form>
+        <h:form><h:commandButton id="back" value="Back to Homepage" action="homepage.xhtml?faces-redirect=true"/></h:form>
+        <h:form>
+            <p:dialog header="Sign Up" widgetVar="dlg" modal="true" resizable="false">
+            <h:panelGrid columns="2" id="matchGrid" cellpadding="5">  
+                <h:outputLabel for="uid" value="Username:" /> 
+                <p:inputText id="uid" required="true" value="#{signUpController.model.uid}">	
+                </p:inputText> 
+                
+                <h:outputLabel for="fname" value="First Name:" /> 
+                <p:inputText id="fname" required="true" value="#{signUpController.model.fname}">	
+                </p:inputText>
+            
+                <h:outputLabel for="lname" value="Last Name:" /> 
+                <p:inputText id="lname" required="true" value="#{signUpController.model.lname}">	
+                </p:inputText>
+                
+                <h:outputLabel for="email" value="Email:" /> 
+                <p:inputText id="email" required="true" value="#{signUpController.model.email}">
+                </p:inputText>
+                             
+                <h:outputLabel for="pwd1" value="Password:" />
+                <p:password id="pwd1" value="#{signUpController.model.pass}" match="pwd2" label="Password 1" required="true" />
+ 
+                <h:outputLabel for="pwd2" value="Confirm Password:" />
+                <p:password id="pwd2" value="#{signUpController.model.pass}" label="Password 2" required="true" />
+            
+                
+                <p:commandButton id="sub" update="matchGrid" value="Sign Up" action="#{signUpController.createProfile()}"> </p:commandButton>
+            </h:panelGrid>
+            <p:messages id="messages" showDetail="true" autoUpdate="true" />
+            </p:dialog>
+        
+        </h:form>
+            
+        <h:form>
+            <p:dialog header="Sign In" widgetVar="dlg2" modal="true" resizable="false">
+            <h:panelGrid columns="2" id="signingrid" cellpadding="5">  
+                <h:outputLabel for="signinuid" value="Username:" /> 
+                <p:inputText id="signinuid" value="#{userController.lb.uid}" required="true">	
+                </p:inputText> 
+                
+                <h:outputLabel for="signinpwd" value="Password:" />
+                <p:password id="signinpwd" value="#{userController.lb.password}" label="Password 3" required="true" />
+ 
+                <p:commandButton id="sub2" update="signingrid" value="Sign In" action="#{userController.login()}"> </p:commandButton>
+            </h:panelGrid>
+            <p:messages id="messages2" showDetail="true" autoUpdate="true" />
+            </p:dialog>
+            
+        </h:form>
+    </body>
+</html>

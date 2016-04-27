@@ -6,6 +6,7 @@
 package dao;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import model.Donation;
 import model.LoginBean;
@@ -24,4 +25,5 @@ public interface DAO {
     public int createProfile(SignUpBean aProfile);
     public LoginBean login(String username, String password);
     public List<Donation> topDonators();
+    public List<Donation> allDonators();
 }

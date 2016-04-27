@@ -148,5 +148,36 @@ public class DAOImpl implements DAO {
         }
         return null;
     }
+
+    @Override
+    public List<Donation> allDonators() {
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+        try {
+            String myDB = "jdbc:derby://localhost:1527/Project353";
+            Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
+
+            String queryString = 
+                    "select * from project353.pixels";
+
+            Statement stmt = DBConn.createStatement();
+            ResultSet rs = stmt.executeQuery(queryString);
+            List<Donation> lod=new ArrayList<Donation>();
+            while(rs.next()){
+                lod.add(new Donation(rs.getString("uid"), rs.getString("displayname"), rs.getString("usstate"), rs.getInt("pixelsbought")));
+            }
+    
+            DBConn.close();
+            return lod;
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return null;
+    }
 }
 

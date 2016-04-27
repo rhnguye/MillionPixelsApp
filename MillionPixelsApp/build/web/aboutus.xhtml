@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <link rel="stylesheet" type="text/css" href="./resources/css/style.css"></link>
+        <h:form>
+            <p:growl id="messages"/>
+            <p:menubar>
+                <p:menuitem value ="Home" url ="homepage.xhtml"/>
+                <p:menuitem value="FMSC Website" url="https://www.fmsc.org/" />
+                <p:menuitem value="About Us" url="aboutus.xhtml" />
+                <p:menuitem value="Top Donations" url="topdonators.xhtml"/>
+                <p:submenu label="#{userController.uid}"  style="float:right" rendered="#{userController.isLoggedin()}">
+                        <p:menuitem value="Donate" />
+                        <p:menuitem value="Edit Profile" />
+                        <p:menuitem value="Logout" action="#{userController.logout()}" rendered="#{userController.isLoggedin()}"/>
+                    </p:submenu>
+                <p:menuitem value ="Donate" url="donate.xhtml"/>
+                <f:facet name="options">
+                    <p:commandButton value="Sign Up" onclick="PF('dlg').show();" rendered="#{!userController.isLoggedin()}"/>
+                    <p:commandButton value="Sign In" onclick="PF('dlg2').show();" rendered="#{!userController.isLoggedin()}"/>
+                    
+ 
+                </f:facet>
+                
+               
+            </p:menubar>
+        </h:form>
+        <div>
+            <h1>Who We Are</h1>
+           
+            <p>Feed My Starving Children® is a Christian non-profit organization committed to feeding God’s children hungry in body and spirit. The approach is simple: children and adults hand-pack meals specifically formulated for malnourished children, and we ship these meals to our distribution partners. FMSC meals have reached nearly 70 countries around the world in our history. Learn </p>
+        </div>
+        
+        <pre>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut augue arcu. Donec interdum justo ut felis dictum, quis imperdiet enim 
+condimentum. Sed odio sem, feugiat quis rhoncus vitae, mattis in purus. Nunc efficitur ac felis in vestibulum. Proin vulputate nisl rutrum efficitur blandit. 
+Ut vel lacus scelerisque, dictum dolor sed, mattis velit. Phasellus bibendum odio lacus, eu pellentesque felis accumsan eget. Phasellus varius libero non ante 
+fringilla pretium. Nunc consectetur vulputate rutrum. Aenean fermentum lectus facilisis aliquet lacinia. Suspendisse potenti. Proin dictum ante id lectus 
+fermentum auctor. Praesent at leo quis est tincidunt viverra at sed ligula. Suspendisse iaculis interdum consequat.
+
+    Phasellus fringilla eros sit amet neque aliquam auctor. Donec non scelerisque dolor, eu commodo velit. Nam sit amet lacus id nisl faucibus lacinia gravida
+ in magna. Maecenas placerat malesuada dui sit amet pellentesque. Duis nibh nunc, dictum quis tincidunt non, sodales a lacus. Nulla condimentum, orci a posuere
+ ullamcorper, elit dui rutrum magna, nec ultricies massa neque ut metus. Aenean elementum, nisi et placerat dapibus, nisi nunc commodo purus, sit amet suscipit
+ ipsum lectus eget lacus. Donec faucibus convallis vestibulum. Maecenas ut sodales odio, et efficitur turpis. Etiam iaculis felis sed dapibus mattis.
+
+    Praesent consectetur pellentesque mi, in interdum est maximus non. Mauris sed metus quis turpis accumsan luctus. Quisque rhoncus euismod orci vitae facilisis.
+ Mauris non facilisis leo, vel sagittis metus. Vivamus aliquet est libero, in dapibus eros tempus ut. Nunc pharetra vitae tellus quis condimentum. Mauris aliquet
+ in diam in gravida. Maecenas a velit convallis, fringilla libero quis, condimentum erat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut volutpat
+ sodales dui, at vehicula dui iaculis id.
+
+    Duis sit amet mauris volutpat, eleifend tortor quis, eleifend purus. Duis ac purus sit amet ipsum congue commodo. Phasellus suscipit venenatis nisi et 
+blandit. Etiam et arcu blandit, varius arcu et, faucibus quam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque lobortis augue metus, 
+non posuere neque condimentum eu. Aenean commodo, nisi tincidunt consectetur blandit, urna mauris efficitur turpis, et pellentesque libero est sed lectus. 
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque ac cursus nisl. Curabitur malesuada dolor at orci consectetur, 
+quis volutpat ligula viverra. Morbi non tellus sed eros pulvinar fermentum eu vitae dui.
+  
+    Aliquam hendrerit pretium libero, quis blandit magna laoreet in. Integer fermentum ex ultricies, condimentum nunc vitae, consequat tellus. Sed eget eros
+quam. Fusce tristique imperdiet vulputate. Vivamus condimentum lectus augue, non posuere elit accumsan porta. Sed tristique congue dignissim. Nulla tincidunt
+eu nisi quis semper. Curabitur blandit consectetur felis nec faucibus. Nulla luctus lacus dignissim lectus commodo, sit amet mollis elit ullamcorper. Aliquam 
+erat volutpat. Sed ac nulla eget neque convallis bibendum. Sed sollicitudin tincidunt lobortis. Morbi purus dui, egestas a pretium fringilla, dictum eget nisi.
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada ipsum et pretium facilisis. Cras non magna dictum, aliquam nisi ut, pellentesque
+ante. Sed cursus ultricies mi, vitae feugiat mi ultricies at. In hendrerit vulputate lectus vel gravida. Morbi cursus volutpat dolor, a dignissim lectus volutpat
+non. Nam ultricies metus sed venenatis blandit. Integer mattis nulla felis, sed semper turpis bibendum ac. In at efficitur urna, nec rhoncus odio.
+    
+    Nulla laoreet nulla in diam vestibulum laoreet. Curabitur mauris ipsum, tristique non egestas et, faucibus sed libero. Cras commodo nulla diam, ut feugiat 
+ipsum aliquam sit amet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent sollicitudin, tellus vitae rutrum 
+sagittis, nibh diam dignissim risus, eget dictum purus leo condimentum tortor. Vestibulum hendrerit consectetur velit a posuere. Nunc dictum semper facilisis. 
+Aliquam a nulla rhoncus eros tempus euismod. Praesent tempor varius hendrerit. Nunc vestibulum malesuada iaculis. Nunc neque sapien, hendrerit vel eros quis, 
+aliquam blandit odio. Maecenas nec porta ligula. Quisque vitae erat congue, cursus felis quis, ullamcorper ante. Nullam dapibus mattis varius. Integer sodales 
+rhoncus egestas. Curabitur sed posuere arcu.
+
+    Aliquam dapibus laoreet nibh, ut cursus turpis mollis et. Vivamus dui odio, luctus vitae tortor in, auctor aliquet dolor. Donec vehicula ligula nulla, id 
+dapibus neque varius non. Donec eget dolor lorem. Proin condimentum, enim sed luctus cursus, neque nulla sodales mi, eget lobortis ipsum dui nec felis. Phasellus
+blandit quam sed lacus consequat, vel feugiat elit vulputate. Etiam a tellus orci. Cras pellentesque odio sem, ut varius risus mattis mattis. Pellentesque blandit
+mollis tincidunt. Duis in convallis nulla. Sed efficitur egestas mi, vel feugiat massa. Nulla maximus ex ut egestas imperdiet. Cras mollis bibendum pellentesque.
+    
+    Sed hendrerit erat eu neque rhoncus dapibus. Integer condimentum imperdiet ex in eleifend. Donec rhoncus imperdiet tellus, eu egestas enim interdum vel. Nam 
+fermentum magna sit amet sem finibus cursus. Suspendisse et cursus purus. Cras imperdiet nec eros et sollicitudin. Curabitur odio mauris, auctor quis tortor ut, 
+placerat aliquet elit. Nulla non augue quis tellus consequat aliquet quis et enim. Sed varius, metus ac dignissim laoreet, tellus eros porttitor nulla, eu tempus 
+turpis lectus in leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas interdum, massa ornare malesuada mollis,
+tellus justo elementum mauris, nec vestibulum magna mi non ante. Donec volutpat finibus est et aliquet. Proin condimentum condimentum ipsum id malesuada. 
+Vestibulum quis dolor nec quam rhoncus sagittis ac quis nulla.
+
+    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed at massa erat. Cras consequat, ligula et tincidunt laoreet, 
+tortor augue fringilla dui, eu euismod risus erat id turpis. Aliquam erat volutpat. Nam lobortis porta vestibulum. Vestibulum vulputate ex et sem mollis, et 
+cursus purus molestie. Maecenas dui purus, vestibulum sed dolor eget, convallis aliquam justo. Vivamus odio augue, finibus ut placerat eget, posuere quis dolor.
+Phasellus non maximus magna, id placerat nibh. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam rhoncus posuere odio
+id iaculis.
+        </pre>
+    </body>
+</html>
