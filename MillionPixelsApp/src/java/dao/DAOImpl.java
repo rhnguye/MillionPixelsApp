@@ -142,11 +142,6 @@ public class DAOImpl implements DAO {
             while(rs.next()){
                 lod.add(new Donation(rs.getString("uid"), rs.getString("displayname"), rs.getString("usstates"), rs.getInt("pixelsbought")));
             }
-            System.out.println("hello11110101010");
-            System.out.println("hello11110101010");
-            System.out.println("hello11110101010");
-            System.out.println("hello11110101010");
-            System.out.println("hello11110101010");
             DBConn.close();
             return lod;
 

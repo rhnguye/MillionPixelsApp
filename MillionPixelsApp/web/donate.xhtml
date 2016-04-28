@@ -34,13 +34,13 @@
             <h:outputLabel for="growl" value="Number of pixels:" />
             <p:growl id="growl" showDetail="true" />
             <h:panelGrid columns="1" style="margin-bottom: 10px">
-            <p:inputText id="txt3" value="#{sliderView.number3}" />
+                <p:inputText id="txt3" value="#{sliderView.number3}"/>
             <p:slider for="txt3" step="10" maxValue = "100" onSlideEnd="#{sliderView.setNumber3(txt3)}"
                       display="txt3">
                 <!--<p:ajax event="slideEnd" listener="" ></p:ajax> -->
             </p:slider>   
-            <p:inputTextarea id="messages" value="#{sliderView.message}"></p:inputTextarea>
-            <p:selectOneMenu id="state" value="#{dropdownView.state}" style="width:150px">
+                Display Name (30 char limit) :<p:inputText id="messages" value="#{sliderView.message}" maxlength="30"></p:inputText>
+            State:<p:selectOneMenu id="state" value="#{dropdownView.state}" style="width:150px" effect="fold" editable="true">
                 <f:selectItem itemLabel="Select State" itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{dropdownView.states}" />
             </p:selectOneMenu>
@@ -48,7 +48,7 @@
    
            <p:separator/>
             <p:commandButton value="Submit" onclick="#{sliderView.setNumber3(txt3)}" update="display"  oncomplete="PF('dlg').show();" />
-            <p:dialog header="Confirmation: " showEffect="fade" hideEffect="fade" widgetVar="dlg">
+            <p:dialog header="Confirmation: " showEffect="fade" hideEffect="fade" widgetVar="dlg" modal="true" resizable="false" draggable="false">
                 <h:panelGrid id="display" columns="1" cellpadding="5">   
                     <h:outputText value="Number of pixels selected: #{sliderView.number3}" />    
                     <h:outputText value="Amount to be donated: $#{sliderView.calculateDonation()}" />
