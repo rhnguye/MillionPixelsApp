@@ -23,3 +23,16 @@ vertical-align: text-bottom !important;
 .panelGridCenter {
     margin: 0 auto;
 }
+h1{
+    font-size: 50px;
+    font-family: "Arial";
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em darkblue;
+    
+}
+.center{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}

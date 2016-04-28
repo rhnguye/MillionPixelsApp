@@ -7,6 +7,7 @@ package controller;
 
 import dao.*;
 import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ManagedProperty;
@@ -188,5 +189,43 @@ public class UserController {
         ChangeImage myimage = new ChangeImage();
         myimage.updateImage(pixelsbought, "/resources/images/pic1.png", "/resources/images/pic2.png");
         return "homepage.xhtml";
+    }
+    public String[] getAllDonationNames()
+    {
+         DAOImpl dao=new DAOImpl();
+         List<Donation> mylist = dao.allDonators();
+         for(int i = 0; i < mylist.size(); i++)
+         {
+             if(mylist.get(i).getPixelsbought() == 0)
+             {
+                 mylist.remove(i);
+             }
+         }
+         String[] temp = new String[mylist.size()];
+         for(int i = 0; i < mylist.size(); i++)
+         {
+             temp[i] = mylist.get(i).getDisplayname();
+         }
+         return temp;
+    }
+    public int[] getAllDonationAmout()
+    {
+        DAOImpl dao=new DAOImpl();
+         List<Donation> mylist = dao.allDonators();
+         for(int i = 0; i < mylist.size(); i++)
+         {
+             if(mylist.get(i).getPixelsbought() == 0)
+             {
+                 mylist.remove(i);
+             }
+         }
+         int[] temp = new int[mylist.size()];
+         for(int i = 0; i < mylist.size(); i++)
+         {
+             temp[i] = mylist.get(i).getPixelsbought();
+         }
+         return temp;
+        
+        
     }
 }

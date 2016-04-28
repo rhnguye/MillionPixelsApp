@@ -98,9 +98,11 @@ and open the template in the editor.
                 <br/>
            </h:panelGrid>
 
-        
+          
 <script type="text/javascript">
             //donator class that will be populated by database
+            var names = '#{userController.allDonationNames}';
+            var amout = '#{userController.allDonationAmout}';
             function donator(name,pixels)
             {
                 this.name = name;
@@ -109,7 +111,12 @@ and open the template in the editor.
             function addElement()
             {
                 //size of array determined by number of donate rows in PROJECT353.DONATE
-                
+                var q = 0;
+                var arr
+                for(q = 0; q &lt; names.length; q++)
+                {
+                    arr[i] = new donator(name[i], amount[i]);
+                }
                 var name1 = "kumar";
                 var donate1 = 200;
                 var name2 = "john";
@@ -125,7 +132,7 @@ and open the template in the editor.
             
             
                 //load array from database (name,pixelsDonated)
-                var arr = [new donator(name1,donate1),new donator(name2,donate2), new donator(name3,donate3), new donator(name4,donate4),new donator(name5,donate5), new donator(name6,donate6)];
+//                var arr = [new donator(name1,donate1),new donator(name2,donate2), new donator(name3,donate3), new donator(name4,donate4),new donator(name5,donate5), new donator(name6,donate6)];
                 var k;
                 
                 //prepare image to be loaded with new areas on map
