@@ -40,6 +40,10 @@
                 <!--<p:ajax event="slideEnd" listener="" ></p:ajax> -->
             </p:slider>   
             <p:inputTextarea id="messages" value="#{sliderView.message}"></p:inputTextarea>
+            <p:selectOneMenu id="state" value="#{dropdownView.state}" style="width:150px">
+                <f:selectItem itemLabel="Select State" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.states}" />
+            </p:selectOneMenu>
             </h:panelGrid> 
    
            <p:separator/>
@@ -48,24 +52,25 @@
                 <h:panelGrid id="display" columns="1" cellpadding="5">   
                     <h:outputText value="Number of pixels selected: #{sliderView.number3}" />    
                     <h:outputText value="Amount to be donated: $#{sliderView.calculateDonation()}" />
+                    <h:outputText value="State: #{dropdownView.state}" />
                     <h:outputText value="Message: #{sliderView.message}" />
                     
                     <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" onclick="#{sliderView.finalDonation}" method="post" target="_top">
-            <input type="hidden" id="am" name="amount" value="#{sliderView.donation}"   readonly="true">
-            </input>
-            <input type="hidden" name="cmd" value="_donations"></input>
-            <input type="hidden" name="business" value="6W9ANDW7BAY5W"></input>
-            <input type="hidden" name="lc" value="US"></input>
-            <input type="hidden" name="item_name" value="FMSC"></input>
-            <input type="hidden" name="item_number" value="1234"></input>
-            <input type="hidden" name="no_note" value="0"></input>
-            <input type="hidden" name="cn" value="Add special instructions to the seller:"></input>
-            <input type="hidden" name="no_shipping" value="1"></input>
-            <input type="hidden" name="currency_code" value="USD"></input>
-            <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted"></input>
-            <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"></input>
-            <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"></img>
-                </form>
+                    <input type="hidden" id="am" name="amount" value="#{sliderView.donation}" readonly="true">
+                    </input>
+                        <input type="hidden" name="cmd" value="_donations"></input>
+                        <input type="hidden" name="business" value="6W9ANDW7BAY5W"></input>
+                        <input type="hidden" name="lc" value="US"></input>
+                        <input type="hidden" name="item_name" value="FMSC"></input>
+                        <input type="hidden" name="item_number" value="1234"></input>
+                        <input type="hidden" name="no_note" value="0"></input>
+                        <input type="hidden" name="cn" value="Add special instructions to the seller:"></input>
+                        <input type="hidden" name="no_shipping" value="1"></input>
+                        <input type="hidden" name="currency_code" value="USD"></input>
+                        <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted"></input>
+                        <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"></input>
+                        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"></img>
+                    </form>
                 </h:panelGrid>
             </p:dialog>
         </h:form>

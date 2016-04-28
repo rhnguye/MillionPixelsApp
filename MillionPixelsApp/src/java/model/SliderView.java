@@ -23,6 +23,15 @@ public class SliderView
     private double finalDonation;
     private String message;
     private final double PIXEL_PRICE =.22;
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public String getMessage() {
         return message;
