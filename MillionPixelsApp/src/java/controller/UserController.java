@@ -6,12 +6,14 @@
 package controller;
 
 import dao.*;
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import model.ChangeImage;
+import model.Donation;
 import model.LoginBean;
 
 /**
@@ -31,6 +33,15 @@ public class UserController {
     public UserController() {
         loggedin=false;
         lb=new LoginBean();
+        DAOImpl dao=new DAOImpl();
+        ArrayList<Donation> mylist = (ArrayList<Donation>) dao.allDonators();
+        int count = 0;
+        for(int i = 0; i < mylist.size(); i++)
+        {
+            count = count + mylist.get(i).getPixelsbought();
+        }
+        pixelsbought = count;
+        imageUpdate();
     }
 
     /**

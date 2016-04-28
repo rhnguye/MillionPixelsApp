@@ -1,8 +1,10 @@
 package model; 
 
+import dao.DAOImpl;
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
  
 import org.primefaces.model.chart.Axis;
@@ -16,7 +18,21 @@ public class ChartView implements Serializable {
  
     private BarChartModel barModel;
     private HorizontalBarChartModel horizontalBarModel;
-    int pixelsPurchased = 323482;
+    int pixelsPurchased = 0;
+    
+    public ChartView ()
+    {
+        DAOImpl dao=new DAOImpl();
+        List<Donation> mylist = dao.allDonators();
+        int count = 0;
+        for(int i = 0; i < mylist.size(); i++)
+        {
+            count = count + mylist.get(i).getPixelsbought();
+        }
+        pixelsPurchased = count;
+        ChangeImage myimage = new ChangeImage();
+        myimage.updateImage(pixelsPurchased, "/resources/images/pic1.png", "/resources/images/pic2.png");
+     }
  
     @PostConstruct
     public void init() {

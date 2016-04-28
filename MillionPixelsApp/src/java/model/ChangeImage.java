@@ -48,8 +48,6 @@ public class ChangeImage {
         System.out.println("absoluteDiskPath = " + absoluteDiskPath);
         
         File file = new File(absoluteDiskPath);
-        System.out.println(file.exists());System.out.println(file.exists());System.out.println(file.exists());System.out.println(file.exists());System.out.println(file.exists());System.out.println(file.exists());System.out.println(file.exists());System.out.println(file.exists());System.out.println(file.exists());System.out.println(file.exists());
-
         img = ImageIO.read(file);
        }
        catch(IOException e){
@@ -57,16 +55,17 @@ public class ChangeImage {
          System.out.println(System.getProperty("user.dir"));
 
        }
+       
         int width = img.getWidth();
         int height = img.getHeight();
-        int startingpoint = 1000000-pixelsBought;
+        int startingpixle = (width * height)- pixelsBought;
         
-        int rows = pixelsBought % img.getHeight();
-        int colms = pixelsBought / img.getWidth();
-        int count = 0;
-        for(int i = (height - colms); i < height; i++)
+        int startblacking =  (pixelsBought / width);
+        int leftoverStartpixels = (pixelsBought % width);
+
+        for(int i = startblacking; i < height; i++)
         {
-         for(int k = 0; k < img.getWidth(); k++)
+         for(int k = 0; k < width; k++)
          {
           int p = img.getRGB(k,i);
 
@@ -83,11 +82,10 @@ public class ChangeImage {
 
              img.setRGB(k, i, p);
          }
-         count = i;
         }
-        for(int i = 0; i < rows; i++)
+        for(int i = leftoverStartpixels; i < width; i++)
         {
-          int p = img.getRGB(i,count);
+          int p = img.getRGB(i,startblacking-1);
 
              int a = (p>>24)&0xFF000000;
              int r = (p>>16)&0xFF000000;
@@ -100,7 +98,7 @@ public class ChangeImage {
              
              p = (a<<24) | (avg<<16) | (avg<<8) | avg;
              
-             img.setRGB(i, count, p);
+             img.setRGB(i, startblacking-1, p);
         }
 
 
