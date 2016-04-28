@@ -46,7 +46,6 @@
             </p:selectOneMenu>
             </h:panelGrid> 
    
-           <p:separator/>
             <p:commandButton value="Submit" onclick="#{sliderView.setNumber3(txt3)}" update="display"  oncomplete="PF('dlg').show();" />
             <p:dialog header="Confirmation: " showEffect="fade" hideEffect="fade" widgetVar="dlg" modal="true" resizable="false" draggable="false">
                 <h:panelGrid id="display" columns="1" cellpadding="5">   
@@ -54,8 +53,8 @@
                     <h:outputText value="Amount to be donated: $#{sliderView.calculateDonation()}" />
                     <h:outputText value="State: #{dropdownView.state}" />
                     <h:outputText value="Message: #{sliderView.message}" />
-                    
-                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" onclick="#{sliderView.finalDonation}" method="post" target="_top">
+                    <!--https://www.sandbox.paypal.com/cgi-bin/webscr-->
+                    <form action="#{sliderView.donate()}" onclick="#{sliderView.finalDonation}" method="post" target="_top">
                     <input type="hidden" id="am" name="amount" value="#{sliderView.donation}" readonly="true">
                     </input>
                         <input type="hidden" name="cmd" value="_donations"></input>

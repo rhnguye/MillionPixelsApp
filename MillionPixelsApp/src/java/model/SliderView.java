@@ -5,8 +5,12 @@
  */
 package model;
  
+import controller.UserController;
+import dao.DAOImpl;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -18,13 +22,24 @@ import org.primefaces.event.SlideEndEvent;
 @RequestScoped
 public class SliderView
 {
-    private int number3;   
+    private int number3;  //number of pixels bought; 
     private double donation;
     private double finalDonation;
-    private String message;
+    private String message;//display name
     private final double PIXEL_PRICE =.22;
     private String state;
+    
+    @ManagedProperty(value="#{userController}")
+    private UserController uc;
+    @ManagedProperty(value="#{dropdownView}")
+    private DropdownView dv;
 
+    public String donate(){
+        DAOImpl d=new DAOImpl();
+        if(d.donate(number3, message, getUc().getUid(), dv.getState())==1)
+            return "https://www.sandbox.paypal.com/cgi-bin/webscr";
+        return "error.xhtml";
+    }
     public String getState() {
         return state;
     }
@@ -87,7 +102,31 @@ public class SliderView
         return "SliderView{" + "number3=" + number3 + ", donation=" + donation + ", message=" + message + '}';
     }
 
-    
-    
-    
+    /**
+     * @return the uc
+     */
+    public UserController getUc() {
+        return uc;
+    }
+
+    /**
+     * @param uc the uc to set
+     */
+    public void setUc(UserController uc) {
+        this.uc = uc;
+    }
+
+    /**
+     * @return the dv
+     */
+    public DropdownView getDv() {
+        return dv;
+    }
+
+    /**
+     * @param dv the dv to set
+     */
+    public void setDv(DropdownView dv) {
+        this.dv = dv;
+    }  
 }

@@ -26,4 +26,5 @@ public interface DAO {
     public LoginBean login(String username, String password);
     public List<Donation> topDonators();
     public List<Donation> allDonators();
+    public int donate(int pbought, String dname, String uid, String state);
 }

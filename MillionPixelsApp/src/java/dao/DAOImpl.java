@@ -180,5 +180,54 @@ public class DAOImpl implements DAO {
         }
         return null;
     }
+    @Override
+    public int donate(int pbought, String dname, String uid, String state){
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            System.out.println("gets here");
+        } catch (ClassNotFoundException e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+
+        int rowCount = 0;
+        try {
+//            String myDB = "jdbc:derby://localhost:1527/Project353";
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/mrrakho_Sp2016_UserPixels;create=true";
+            Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
+            
+           
+            String querystring;
+            
+            Statement stmt=DBConn.createStatement();
+            querystring = "select count(*) from project353.donate";
+            
+            ResultSet rs = stmt.executeQuery(querystring);
+            rs.next();
+            int totalrows=rs.getInt(1)+1;
+            
+            
+            String insertstring;
+            insertstring="insert into project353.donate values(" //insert into project353.donate values(10,30,'jmunny','md')
+                    + totalrows
+                    + "," + pbought
+                    + ",'" + dname
+                    + "','" + uid
+                    + "','" + state
+                    + "')";
+            PreparedStatement stmt2 = DBConn.prepareStatement(insertstring);
+            //stmt=DBConn.prepareStatement(insertstring);
+            rowCount=stmt2.executeUpdate();
+            DBConn.close();
+            rs.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        // if insert is successful, rowCount will be set to 1 (1 row inserted successfully). Else, insert failed.
+        
+        return rowCount;
+        
+    }
 }
 
