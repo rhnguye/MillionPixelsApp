@@ -42,12 +42,13 @@ public class DAOImpl implements DAO {
 
         int rowCount = 0;
         try {
-            String myDB = "jdbc:derby://localhost:1527/Project353";
+//            String myDB = "jdbc:derby://localhost:1527/Project353";
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/mrrakho_Sp2016_UserPixels;create=true";
             Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
             
             String insertString;
             Statement stmt = DBConn.createStatement();
-            insertString = "INSERT INTO Project353.ProjectUsers VALUES ('"
+            insertString = "INSERT INTO Project353.Users VALUES ('"
                     + sub.getUid()
                     + "','" + sub.getFname()
                     + "','" + sub.getLname()
@@ -77,11 +78,12 @@ public class DAOImpl implements DAO {
             System.exit(0);
         }
         try {
-            String myDB = "jdbc:derby://localhost:1527/Project353";
+//            String myDB = "jdbc:derby://localhost:1527/Project353";
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/mrrakho_Sp2016_UserPixels;create=true";
             Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
 
             String queryString = 
-                    "select * from project353.projectusers where uid = "
+                    "select * from project353.Users where uid = "
                     + "? and password = ?";
 
             // Note the use of a diff class, called PreparedStatement
@@ -98,7 +100,7 @@ public class DAOImpl implements DAO {
                 lb.setLname(rs.getString("lastname"));
             
             
-                queryString="select pixelsbought from project353.pixels where uid='"
+                queryString="select pixelsbought from project353.donate where uid='"
                         + username + "'";
                 Statement stmt = DBConn.createStatement();
                 rs = stmt.executeQuery(queryString);
@@ -126,20 +128,25 @@ public class DAOImpl implements DAO {
             System.exit(0);
         }
         try {
-            String myDB = "jdbc:derby://localhost:1527/Project353";
+//            String myDB = "jdbc:derby://localhost:1527/Project353";
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/mrrakho_Sp2016_UserPixels;create=true";
             Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
 
             String queryString = 
-                    "select * from project353.pixels"
+                    "select * from project353.donate"
                     + " order by pixelsbought desc";
 
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(queryString);
             List<Donation> lod=new ArrayList<Donation>();
             while(rs.next()){
-                lod.add(new Donation(rs.getString("uid"), rs.getString("displayname"), rs.getString("usstate"), rs.getInt("pixelsbought")));
+                lod.add(new Donation(rs.getString("uid"), rs.getString("displayname"), rs.getString("usstates"), rs.getInt("pixelsbought")));
             }
-    
+            System.out.println("hello11110101010");
+            System.out.println("hello11110101010");
+            System.out.println("hello11110101010");
+            System.out.println("hello11110101010");
+            System.out.println("hello11110101010");
             DBConn.close();
             return lod;
 
