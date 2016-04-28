@@ -93,7 +93,8 @@ and open the template in the editor.
         <br/>
         <!--<h:form>-->
            <h:panelGrid columns="1" styleClass="panelGridCenter">
-               <h:graphicImage style="text-align:center" value="./resources/images/pic2.png"  />
+               <img src="./resources/images/pic2.png" onmouseover="addElement()" width="1000" height ="1000" alt="map" usemap="#hungryMap"/>
+               <!--<h:graphicImage style="text-align:center" value="./resources/images/pic2.png"  />-->
                 <h:outputText value="Total number of meals bought upto today are #{userController.pixelsbought} . Feed a child today for just 22 cents and discover the image above with your commuity."> </h:outputText>
                 <br/>
            </h:panelGrid>
@@ -101,8 +102,6 @@ and open the template in the editor.
           
 <script type="text/javascript">
             //donator class that will be populated by database
-            var names = '#{userController.allDonationNames}';
-            var amout = '#{userController.allDonationAmout}';
             function donator(name,pixels)
             {
                 this.name = name;
@@ -111,12 +110,6 @@ and open the template in the editor.
             function addElement()
             {
                 //size of array determined by number of donate rows in PROJECT353.DONATE
-                var q = 0;
-                var arr
-                for(q = 0; q &lt; names.length; q++)
-                {
-                    arr[i] = new donator(name[i], amount[i]);
-                }
                 var name1 = "kumar";
                 var donate1 = 200;
                 var name2 = "john";
@@ -129,10 +122,12 @@ and open the template in the editor.
                 var donate5 = 1499;
                 var name6 = "richman_steve";
                 var donate6 = 50000;
+                var name7 = "kids you say";
+                var donate7 = 10000;
             
             
                 //load array from database (name,pixelsDonated)
-//                var arr = [new donator(name1,donate1),new donator(name2,donate2), new donator(name3,donate3), new donator(name4,donate4),new donator(name5,donate5), new donator(name6,donate6)];
+                var arr = [new donator(name1,donate1),new donator(name2,donate2), new donator(name3,donate3), new donator(name4,donate4),new donator(name5,donate5), new donator(name6,donate6), new donator(name7,donate7)];
                 var k;
                 
                 //prepare image to be loaded with new areas on map
@@ -217,13 +212,9 @@ and open the template in the editor.
                 //alert("total pixels revealed: " + pixelsRevealed);
             }
         </script>
-
-        <img src="./resources/images/pic2.png" width="1000" height ="1000" alt="map" usemap="#hungryMap"/>
-
         <map name="hungryMap" id="HM">
             
         </map>
-        <button type="button" onclick="addElement()"> Add donator</button>
         <!--</h:form>-->
                 <div id="fb-root"></div>
         <script type="text/javascript" style="panelGridCenter">
