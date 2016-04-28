@@ -26,41 +26,58 @@
                 <f:facet name="options">
                     <p:commandButton value="Sign Up" onclick="PF('dlg3').show();" rendered="#{!userController.isLoggedin()}"/>
                     <p:commandButton value="Sign In" onclick="PF('dlg2').show();" rendered="#{!userController.isLoggedin()}"/>
-                    
- 
-                </f:facet>
-                
-               
+                </f:facet>  
             </p:menubar>
         </h:form>
 
         <h:form>   
-            <h:outputLabel for="growl" value="Pixels:" />
+            <h:outputLabel for="growl" value="Number of pixels:" />
             <p:growl id="growl" showDetail="true" />
             <h:panelGrid columns="1" style="margin-bottom: 10px">
             <p:inputText id="txt3" value="#{sliderView.number3}" />
-            <p:slider for="txt3" step="10" />
+            <p:slider for="txt3" step="10" maxValue = "100" onSlideEnd="#{sliderView.setNumber3(txt3)}"
+                      display="txt3">
+                <!--<p:ajax event="slideEnd" listener="" ></p:ajax> -->
+            </p:slider>   
+            <p:inputTextarea id="messages" value="#{sliderView.message}"></p:inputTextarea>
+            <p:selectOneMenu id="state" value="#{dropdownView.state}" style="width:150px">
+                <f:selectItem itemLabel="Select State" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.states}" />
+            </p:selectOneMenu>
             </h:panelGrid> 
-        </h:form>
-      
-        <p:separator />
-        <h:form>
-        <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show();" />
-        <p:dialog header="Number of pixels bought: " showEffect="fade" hideEffect="fade" widgetVar="dlg">
-        <h:panelGrid id="display" columns="1" cellpadding="5">   
-            <h:outputText value="Pixels: #{sliderView.number3}" />
-            <h:outputText value="Price: $#{sliderView.calculateDonation()}" />
-        </h:panelGrid>
-    </p:dialog>
+   
+           <p:separator/>
+            <p:commandButton value="Submit" onclick="#{sliderView.setNumber3(txt3)}" update="display"  oncomplete="PF('dlg').show();" />
+            <p:dialog header="Confirmation: " showEffect="fade" hideEffect="fade" widgetVar="dlg">
+                <h:panelGrid id="display" columns="1" cellpadding="5">   
+                    <h:outputText value="Number of pixels selected: #{sliderView.number3}" />    
+                    <h:outputText value="Amount to be donated: $#{sliderView.calculateDonation()}" />
+                    <h:outputText value="State: #{dropdownView.state}" />
+                    <h:outputText value="Message: #{sliderView.message}" />
+                    
+                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" onclick="#{sliderView.finalDonation}" method="post" target="_top">
+                    <input type="hidden" id="am" name="amount" value="#{sliderView.donation}" readonly="true">
+                    </input>
+                        <input type="hidden" name="cmd" value="_donations"></input>
+                        <input type="hidden" name="business" value="6W9ANDW7BAY5W"></input>
+                        <input type="hidden" name="lc" value="US"></input>
+                        <input type="hidden" name="item_name" value="FMSC"></input>
+                        <input type="hidden" name="item_number" value="1234"></input>
+                        <input type="hidden" name="no_note" value="0"></input>
+                        <input type="hidden" name="cn" value="Add special instructions to the seller:"></input>
+                        <input type="hidden" name="no_shipping" value="1"></input>
+                        <input type="hidden" name="currency_code" value="USD"></input>
+                        <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted"></input>
+                        <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"></input>
+                        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"></img>
+                    </form>
+                </h:panelGrid>
+            </p:dialog>
         </h:form>
         
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick"/>
-<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
-"/>
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"/>
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"/>
-</form>
+        
+
+
 
         <h:form>
             <p:dialog header="Sign Up" widgetVar="dlg3" modal="true" resizable="false">
@@ -114,4 +131,3 @@
     </h:body>
    
 </html>
-
